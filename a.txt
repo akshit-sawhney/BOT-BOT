@@ -1,0 +1,8 @@
+EAAME6I4GNUEBANZAfAH7Kd3uV8Rl1DCDA2D5LqFJrbkNZCUEiZCucuMGEWrvdhm35O4m7gL3iKFHwRRWUp5w6LyDnV7hDkICjYL6YjsmkG7Pri0ZAfjKhCnZAZAUIGZByIS2hY3zC6tuuoJZAI1nQW3iLSCcz0epNzDNHA0bikZA8XwZDZD
+
+Page token
+
+https://pure-headland-90736.herokuapp.com/
+
+
+curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=<EAAME6I4GNUEBAHWwfZBM0z8rDzMGIxBhrdp0aZAHwyDfWn3uDv4CjmZBOvFwilwTb5noXhCKYIClMbTZCMhIozxG9MVynfE96iDWJedbIZAXZC53GXCtRQNqt7jYjZBd0VzO4ZAJZBo8MMWvXCKF8Quan7T76BhAqAeZCAgSwNGb98pAZDZD>"
