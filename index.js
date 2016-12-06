@@ -31,22 +31,8 @@ function sendGenericMessage(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
-                }, {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
@@ -94,19 +80,6 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong token')
 })
 
-// app.post('/webhook/', function (req, res) {
-//     let messaging_events = req.body.entry[0].messaging
-//     for (let i = 0; i < messaging_events.length; i++) {
-//         let event = req.body.entry[0].messaging[i]
-//         let sender = event.sender.id
-//         if (event.message && event.message.text) {
-//             let text = event.message.text
-//             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-//         }
-//     }
-//     res.sendStatus(200)
-// })
-
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -128,7 +101,7 @@ app.post('/webhook/', function (req, res) {
     }
     res.sendStatus(200)
   })
-  
+
 const token = "EAAPJ21Aq3hMBADX7qdNP1M0sKqxigQBPgD68C0eDq9gNcOnqEsw8E61wWk0R9HLj58o9DFGrTpZBT5rBUVQTPAof9TIsBCJhOEe9Y5RTq2sZClx5noXPif1ZAYb6cZCXWxhyk0OpHcwZBMjIlHDkHqFHDpNXFakgWkQZB6yN9MIwZDZD"
 
 // Spin up the server
