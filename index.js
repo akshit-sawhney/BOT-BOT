@@ -79,7 +79,6 @@ app.get('/webhook/', function (req, res) {
 })
 
 app.post('/webhook/', function (req, res) {
-    console.log("IN");
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
@@ -91,7 +90,8 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
             continue
         }
-        if(event.message.quick_reply.payload) {
+        if(event.message.quick_reply && event.message.quick_reply.payload) {
+            console.log("YESS");
             let text = event.message.quick_reply.payload
             sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
             continue
