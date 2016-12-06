@@ -91,7 +91,7 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
             continue
         }
-        if(event.message.quick_reply) {
+        if(event.message.quick_reply.payload) {
             let text = event.message.quick_reply.payload
             sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
             continue
