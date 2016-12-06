@@ -89,6 +89,11 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
             continue
         }
+        if(event.quick_reply) {
+            let text = event.quick_reply.payload
+            sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
+            continue
+        }
         let text = event.message.text
         if (text === 'Generic') {
             sendGenericMessage(sender)
