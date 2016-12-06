@@ -26,21 +26,19 @@ function sendTextMessage(sender, text) {
 
 function sendGenericMessage(sender) {
     let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
+        "text":"What do you want to do?",
+        "quick_replies":[
+        {
+            "content_type":"text",
+            "title":"BMI",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI"
+        },
+        {
+            "content_type":"text",
+            "title":"Diabetes Rist",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DBR"
         }
+    ]
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
