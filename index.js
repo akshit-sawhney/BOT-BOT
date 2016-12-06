@@ -79,11 +79,13 @@ app.get('/webhook/', function (req, res) {
 })
 
 app.post('/webhook/', function (req, res) {
+    console.log("IN");
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
       if (event.message && event.message.text) {
+        console.log(event);
         if (event.postback) {
             let text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -95,7 +97,7 @@ app.post('/webhook/', function (req, res) {
             continue
         }
         let text = event.message.text
-        if (text === 'Generic') {
+        if (text === 'Hi' || text === 'hi') {
             sendGenericMessage(sender)
             continue
         }
