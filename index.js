@@ -26,7 +26,7 @@ function sendTextMessage(sender, text) {
 
 function sendGenericMessage(sender) {
 	let messageData = {
-		"text":"What do you want to do?",
+		"text":"Hi... I'm a bot... What do you want to do?",
 		"quick_replies":[
 		{
 			"content_type":"text",
@@ -97,7 +97,6 @@ app.post('/webhook/', function (req, res) {
 			}
 			let text = event.message.text
 			if (text === 'Hi' || text === 'hi') {
-				sendTextMessage(sender, "Hi... I'm Messi. I am a chatbot!!")
 				sendGenericMessage(sender)
 				continue
 			}
