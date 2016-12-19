@@ -27,20 +27,21 @@ function sendTextMessage(sender, text) {
 let allData = {};
 var lastAnswered = '';
 
+//This function is for sending What you want to do question
 function sendGenericMessage(sender) {
 	let messageData = {
 		"text":"Hi... I'm a bot... What do you want to do?",
 		"quick_replies":[
-		{
-			"content_type":"text",
-			"title":"BMI",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI"
-		},
-		{
-			"content_type":"text",
-			"title":"Diabetes Risk",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DBR"
-		}
+			{
+				"content_type":"text",
+				"title":"BMI",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI"
+			},
+			{
+				"content_type":"text",
+				"title":"Diabetes Risk",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DBR"
+			}
 		]
 	}
 	request({
@@ -60,8 +61,8 @@ function sendGenericMessage(sender) {
 	})
 }
 
+// A more generic version of quick message sending format
 function sendSpecificMessage(messageData, sender) {
-	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -79,6 +80,7 @@ function sendSpecificMessage(messageData, sender) {
 	})
 }
 
+// Application is running at either heroku's port or 5000
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -104,8 +106,12 @@ app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
+
+		//This is the sender ID
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
+
+			/// Postback part
 			if (event.postback) {
 				let text = JSON.stringify(event.postback)
 				sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -115,6 +121,8 @@ app.post('/webhook/', function (req, res) {
 			//Payload wale messages
 			if(event.message.quick_reply && event.message.quick_reply.payload) {
 				let text = event.message.quick_reply.payload
+
+				// BMI Wala question
 				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
 					let messageData1 = {
 						"text":"I know it's a little bit awkward, but may I know your gender. I will need it to proceed with my calculations",
@@ -147,6 +155,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			let text = event.message.text
 			if (text === 'Hi' || text === 'hi') {
+				// Lets get it started
 				sendGenericMessage(sender)
 				continue
 			} else if(lastAnswered == "Gender") {
