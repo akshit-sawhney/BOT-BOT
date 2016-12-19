@@ -183,6 +183,7 @@ app.post('/webhook/', function (req, res) {
 			} else {
 				console.log("TERI PROBLEM KYA H BE!!");
 				console.log("JE HUN NA CHALEYA.....Main gaal kad deni hai")
+				console.log("CHANGE");
 				sendTextMessage(sender, "Sorry I'm still learning")
 			}
 		}
