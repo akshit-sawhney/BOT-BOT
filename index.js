@@ -60,6 +60,7 @@ function sendGenericMessage(sender) {
 }
 
 function sendSpecificMessage(messageData, sender) {
+	console.log("SPECIFIC TEXT MESSAGE");
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -132,7 +133,7 @@ app.post('/webhook/', function (req, res) {
 						]
 					}
 					sendSpecificMessage(messageData1, sender)
-					continue;
+					continue
 				}
 				sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
 				continue
