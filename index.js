@@ -132,6 +132,7 @@ app.post('/webhook/', function (req, res) {
 						]
 					}
 					sendSpecificMessage(messageData1, sender)
+					continue;
 				}
 				sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
 				continue
