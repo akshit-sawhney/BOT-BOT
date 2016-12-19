@@ -199,7 +199,7 @@ app.post('/webhook/', function (req, res) {
 					console.log(sender);
 					console.log(allData[sender]);
 					console.log("EVERYTHING IS FAIR IN LOVE AND WAR")
-					console.log("OOO BHADAK");
+					console.log("Aur kitne alerts lagaau");
 					sendTextMessage(sender, "That's it.... Here is your bmi result");
 					lastAnswered = "Done";
 				}
