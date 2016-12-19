@@ -198,6 +198,7 @@ app.post('/webhook/', function (req, res) {
 					console.log(allData);
 					console.log(sender);
 					console.log(allData[sender]);
+					console.log("EVERYTHING IS FAIR IN LOVE AND WAR")
 					sendTextMessage(sender, "That's it.... Here is your bmi result");
 					lastAnswered = "Done";
 				}
