@@ -138,10 +138,12 @@ app.post('/webhook/', function (req, res) {
 					sendSpecificMessage(messageData1, sender)
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MALE") {
+					console.log("INSIDE MALE BLOCK")
 					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your age? How old are you?")
 					lastAnswered = "Gender";
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FEMALE") {
+					console.log("INSIDE FEMALE BLOCK")
 					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your age? How old are you?")
 					lastAnswered = "Gender";
 					continue
@@ -155,22 +157,26 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			} else if(lastAnswered == "Gender") {
-				console.log(text);
+				console.log("INSIDE GENDER KE BAAD WALA BLOCK")
 				if(parseInt(text) == parseInt(text)) {
+					console.log("INSIDE CORRECT GENDER")
 					sendTextMessage(sender, "Thanks for the response. May I know your weight... Please enter your weight");
 					lastAnswered = "Height";
 				}
 				else {
+					console.log("INSIDE INCORRECT GENDER")
 					sendTextMessage(sender, "I'm a very young bot. Not able to understand what you mean. Please enter your Height once again");
 					lastAnswered = "Gender";
 				}
 			} else if(lastAnswered == "Height") {
 				console.log(text);
 				if(parseInt(text) == parseInt(text)) {
+					console.log("MUBAARKA....")
 					sendTextMessage(sender, "That's it.... Here is your bmi result");
 					lastAnswered = "Done";
 				}
 				else {
+					console.log("NAHIIIII");
 					sendTextMessage(sender, "I'm a very young bot. Not able to understand what you mean. Please enter your Weight once again");
 					lastAnswered = "Height";
 				}
