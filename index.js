@@ -169,7 +169,7 @@ app.post('/webhook/', function (req, res) {
 				if(parseInt(text) == parseInt(text)) {
 					console.log("YABA DABA YAHOO")
 					allData[sender]["height"] = parseInt(text);
-					sendTextMessage(sender, "Thanks for the response. May I know your weight... Please enter your weight");
+					sendTextMessage(sender, "Thanks for the response. May I know your weight.. Please enter your weight");
 					lastAnswered = "Height";
 				}
 				else {
