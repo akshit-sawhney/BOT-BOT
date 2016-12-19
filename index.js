@@ -176,7 +176,7 @@ app.post('/webhook/', function (req, res) {
 					lastAnswered = "Done";
 				}
 				else {
-					console.log("NAHIIIII");
+					console.log("NAHIIIII Ho kyu nai rha be tu");
 					sendTextMessage(sender, "I'm a very young bot. Not able to understand what you mean. Please enter your Weight once again");
 					lastAnswered = "Height";
 				}
