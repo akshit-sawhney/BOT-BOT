@@ -202,4 +202,5 @@ const token = "EAAPJ21Aq3hMBADX7qdNP1M0sKqxigQBPgD68C0eDq9gNcOnqEsw8E61wWk0R9HLj
 // Spin up the server
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
+	console.log("BHAIIII");
 })
