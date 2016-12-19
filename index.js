@@ -24,6 +24,8 @@ function sendTextMessage(sender, text) {
 	})
 }
 
+let allData = {};
+
 function sendGenericMessage(sender) {
 	let messageData = {
 		"text":"Hi... I'm a bot... What do you want to do?",
@@ -35,11 +37,30 @@ function sendGenericMessage(sender) {
 		},
 		{
 			"content_type":"text",
-			"title":"Diabetes Rist",
+			"title":"Diabetes Risk",
 			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DBR"
 		}
 		]
 	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function sendSpecificMessage(messageData, sender) {
+	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -90,8 +111,28 @@ app.post('/webhook/', function (req, res) {
 				sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 				continue
 			}
+
+			//Payload wale messages
 			if(event.message.quick_reply && event.message.quick_reply.payload) {
 				let text = event.message.quick_reply.payload
+				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
+					let messageData1 = {
+						"text":"I know it's a little bit awkward, but may I know your gender. I will need it to proceed with my calculations",
+						"quick_replies":[
+							{
+								"content_type":"text",
+								"title":"MALE",
+								"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MALE"
+							},
+							{
+								"content_type":"text",
+								"title":"FEMALE",
+								"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FEMALE"
+							}
+						]
+					}
+					sendSpecificMessage(messageData1, sender)
+				}
 				sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
 				continue
 			}
@@ -100,7 +141,7 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendTextMessage(sender, "Sorry I'm still learning")
 		}
 	}
 	res.sendStatus(200)
