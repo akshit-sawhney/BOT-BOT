@@ -20,8 +20,6 @@ function sendTextMessage(sender, text) {
 			console.log('Error sending messages: ', error)
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
-			console.log("KUCH TO DIKKAT HAI")
-			console.log("PARTYYY")
 		}
 	})
 }
@@ -131,6 +129,10 @@ app.post('/webhook/', function (req, res) {
 						"height": 0,
 						"weight": 0
 					}
+					console.log("BLANK DATA");
+					console.log(allData);
+					console.log(sender);
+					console.log(allData[sender]);
 					let messageData1 = {
 						"text":"I know it's a little bit awkward, but may I know your gender. I will need it to proceed with my calculations",
 						"quick_replies":[
@@ -150,11 +152,19 @@ app.post('/webhook/', function (req, res) {
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MALE") {
 					allData[sender]["gender"] = "male";
+					console.log("MALE DATA");
+					console.log(allData);
+					console.log(sender);
+					console.log(allData[sender]);
 					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your height?")
 					lastAnswered = "Gender";
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FEMALE") {
 					allData[sender]["gender"] = "female";
+					console.log("FEMALE DATA");
+					console.log(allData);
+					console.log(sender);
+					console.log(allData[sender]);
 					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your height?")
 					lastAnswered = "Gender";
 					continue
@@ -169,8 +179,11 @@ app.post('/webhook/', function (req, res) {
 				continue
 			} else if(lastAnswered == "Gender") {
 				if(parseInt(text) == parseInt(text)) {
-					console.log("YABA DABA YAHOO")
 					allData[sender]["height"] = parseInt(text);
+					console.log("HEIGHT DATA");
+					console.log(allData);
+					console.log(sender);
+					console.log(allData[sender]);
 					sendTextMessage(sender, "Thanks for the response. May I know your weight.. Please enter your weight");
 					lastAnswered = "Height";
 				}
@@ -181,10 +194,11 @@ app.post('/webhook/', function (req, res) {
 			} else if(lastAnswered == "Height") {
 				if(parseInt(text) == parseInt(text)) {
 					allData[sender]["weight"] = parseInt(text);
-					sendTextMessage(sender, "That's it.... Here is your bmi result");
-					sendTextMessage(sender, allData[sender]);
-					console.log("Chal jao meri jaan")
+					console.log("WEIGHT DATA");
 					console.log(allData);
+					console.log(sender);
+					console.log(allData[sender]);
+					sendTextMessage(sender, "That's it.... Here is your bmi result");
 					lastAnswered = "Done";
 				}
 				else {
@@ -204,5 +218,4 @@ const token = "EAAPJ21Aq3hMBADX7qdNP1M0sKqxigQBPgD68C0eDq9gNcOnqEsw8E61wWk0R9HLj
 // Spin up the server
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
-	console.log("BHAIIII");
 })
