@@ -27,6 +27,7 @@ function sendTextMessage(sender, text) {
 let allData = {};
 
 function sendGenericMessage(sender) {
+	console.log("BMI WALA MESSAGE");
 	let messageData = {
 		"text":"Hi... I'm a bot... What do you want to do?",
 		"quick_replies":[
@@ -117,6 +118,7 @@ app.post('/webhook/', function (req, res) {
 			if(event.message.quick_reply && event.message.quick_reply.payload) {
 				let text = event.message.quick_reply.payload
 				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
+					console.log("INSIDE BMI BLOCK");
 					let messageData1 = {
 						"text":"I know it's a little bit awkward, but may I know your gender. I will need it to proceed with my calculations",
 						"quick_replies":[
@@ -135,6 +137,7 @@ app.post('/webhook/', function (req, res) {
 					sendSpecificMessage(messageData1, sender)
 					continue
 				}
+				console.log("MAT CHALIYO BE");
 				sendTextMessage(sender, "HALA MADRID: " + text.substring(0, 200))
 				continue
 			}
