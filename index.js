@@ -24,7 +24,7 @@ function sendTextMessage(sender, text) {
 	})
 }
 
-let allData = {};
+let allData = [];
 var lastAnswered = '';
 
 //This function is for sending What you want to do question
@@ -124,6 +124,11 @@ app.post('/webhook/', function (req, res) {
 
 				// BMI Wala question
 				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
+					allData[sender] = {
+						"gender": '',
+						"height": 0,
+						"weight": 0
+					}
 					let messageData1 = {
 						"text":"I know it's a little bit awkward, but may I know your gender. I will need it to proceed with my calculations",
 						"quick_replies":[
@@ -142,11 +147,13 @@ app.post('/webhook/', function (req, res) {
 					sendSpecificMessage(messageData1, sender)
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MALE") {
-					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your age? How old are you?")
+					allData[sender]["gender"] = "male";
+					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your height?")
 					lastAnswered = "Gender";
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FEMALE") {
-					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your age? How old are you?")
+					allData[sender]["gender"] = "female";
+					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your height?")
 					lastAnswered = "Gender";
 					continue
 				}
@@ -160,6 +167,7 @@ app.post('/webhook/', function (req, res) {
 				continue
 			} else if(lastAnswered == "Gender") {
 				if(parseInt(text) == parseInt(text)) {
+					allData[sender]["height"] = parseInt(text);
 					sendTextMessage(sender, "Thanks for the response. May I know your weight... Please enter your weight");
 					lastAnswered = "Height";
 				}
@@ -169,7 +177,9 @@ app.post('/webhook/', function (req, res) {
 				}
 			} else if(lastAnswered == "Height") {
 				if(parseInt(text) == parseInt(text)) {
+					allData[sender]["weight"] = parseInt(text);
 					sendTextMessage(sender, "That's it.... Here is your bmi result");
+					sendTextMessage(sender, allData[sender]);
 					lastAnswered = "Done";
 				}
 				else {
