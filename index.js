@@ -181,7 +181,8 @@ app.post('/webhook/', function (req, res) {
 					lastAnswered = "Height";
 				}
 			} else {
-				console.log("TERI PROBLEM KYA H BE!!")
+				console.log("TERI PROBLEM KYA H BE!!");
+				console.log("JE HUN NA CHALEYA.....Main gaal kad deni hai")
 				sendTextMessage(sender, "Sorry I'm still learning")
 			}
 		}
