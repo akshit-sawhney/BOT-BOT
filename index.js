@@ -180,6 +180,8 @@ app.post('/webhook/', function (req, res) {
 					allData[sender]["weight"] = parseInt(text);
 					sendTextMessage(sender, "That's it.... Here is your bmi result");
 					sendTextMessage(sender, allData[sender]);
+					console.log("Chal jao meri jaan")
+					console.log(allData);
 					lastAnswered = "Done";
 				}
 				else {
