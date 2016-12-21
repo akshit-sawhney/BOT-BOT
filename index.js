@@ -154,12 +154,12 @@ app.post('/webhook/', function (req, res) {
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MALE") {
 					allData[sender]["gender"] = "male";
-					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your height?")
+					sendTextMessage(sender, "Hello Mister!!! Its pleasure to meet you. May I know your height in centimeters?")
 					lastAnswered = "Gender";
 					continue
 				} else if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FEMALE") {
 					allData[sender]["gender"] = "female";
-					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your height?")
+					sendTextMessage(sender, "Hi Beautiful!!! Its pleasure to meet you. May I know your height in centimeters?")
 					lastAnswered = "Gender";
 					continue
 				}
@@ -174,11 +174,11 @@ app.post('/webhook/', function (req, res) {
 			} else if(lastAnswered == "Gender") {
 				if(parseInt(text) == parseInt(text)) {
 					allData[sender]["height"] = parseInt(text);
-					sendTextMessage(sender, "Thanks for the response. May I know your weight.. Please enter your weight");
+					sendTextMessage(sender, "May I know your weight.. Please enter your weight in kilograms");
 					lastAnswered = "Height";
 				}
 				else {
-					sendTextMessage(sender, "I'm a very young bot. Not able to understand what you mean. Please enter your Height once again");
+					sendTextMessage(sender, "I'm a very young bot. Not able to understand what you mean. Please enter your Height once again in centimeters");
 					lastAnswered = "Gender";
 				}
 			} else if(lastAnswered == "Height") {
