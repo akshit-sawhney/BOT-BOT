@@ -185,9 +185,9 @@ app.post('/webhook/', function (req, res) {
 				if(parseInt(text) == parseInt(text)) {
 					allData[sender]["weight"] = parseInt(text);
 					var kgValue = allData[sender]["weight"];
-					var heightValue = allData[sender]["height"];
-					var bmiValue = kgValue/((heightValue/100)*(heightValue/100));
-					sendTextMessage(sender, "That's it.... Here is your bmi result" + bmiValue);
+					var heightValue = (allData[sender]["height"])/100;
+					var bmiValue = kgValue/(heightValue*heightValue);
+					sendTextMessage(sender, "That's it.... Here is your bmi result" + Math.round(bmiValue));
 					lastAnswered = "Done";
 				}
 				else {
