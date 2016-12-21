@@ -125,15 +125,8 @@ app.post('/webhook/', function (req, res) {
 				// BMI Wala question
 				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
 					if(allData[sender]) {
-						console.log("AHOY!!!! EXISTING USER");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
-						
+						console.log("Existing user");
+						console.log((event.sender).toString());
 					}
 					allData[sender] = {
 						"gender": '',
