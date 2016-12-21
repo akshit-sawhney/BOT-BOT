@@ -127,6 +127,13 @@ app.post('/webhook/', function (req, res) {
 					if(allData[sender]) {
 						console.log("AHOY!!!! EXISTING USER");
 						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						console.log("IIIIIIIIIIIIIIIIIIIIIIIIIII");
+						
 					}
 					allData[sender] = {
 						"gender": '',
