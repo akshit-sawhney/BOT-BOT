@@ -124,6 +124,9 @@ app.post('/webhook/', function (req, res) {
 
 				// BMI Wala question
 				if(text == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BMI") {
+					if(allData[sender]) {
+						console.log("AHOY!!!! EXISTING USER");
+					}
 					allData[sender] = {
 						"gender": '',
 						"height": 0,
