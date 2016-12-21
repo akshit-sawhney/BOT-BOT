@@ -30,6 +30,7 @@ var lastAnswered = '';
 
 //This function is for sending What you want to do question
 function sendGenericMessage(sender) {
+	console.log("silly console log")
 	let messageData = {
 		"text":"Hi... I'm a bot... What do you want to do?",
 		"quick_replies":[
